@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>agstool</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 16px;background:#fafafa;color:#222}a{color:#0a58ca}pre{overflow-x:auto;background:#eee;padding:8px}@media(prefers-color-scheme:dark){body{background:#151515;color:#ddd}a{color:#7ab3ff}pre{background:#222}}</style>
+</head><body>
+<h1>agstool</h1>
+<p>Kommandozeilen-Werkzeug (C++) für <a href="https://www.adventuregamestudio.co.uk/">Adventure Game Studio</a> 3.6.1. Es legt Räume (<code>.crm</code>) aus einer JSON-Beschreibung an und ersetzt Sprites (<code>acsprset.spr</code>), ohne dass der Editor offen sein muss. So lassen sich Räume per Skript oder mit KI-Hilfe bauen.</p>
+<h2>Was es kann</h2>
+<ul>
+<li><code>room-build</code>: Raum aus Vorlage + JSON: Hintergrund, Laufflächen, Hotspots mit Namen, Lauf-Zielpunkt und Ereignissen, Regionen, Walk-behinds, Ränder</li>
+<li><code>room-register</code>: Raum in <code>Game.agf</code> eintragen</li>
+<li><code>sprite-set</code>, <code>sprite-sync-agf</code>: Sprites aus PNG ersetzen und Grössen abgleichen</li>
+<li><code>info</code>: Räume und Sprites prüfen, Masken als PNG exportieren</li>
+</ul>
+<p>Es nutzt die offizielle AGS-Common-Bibliothek (<code>ReadRoomData</code>/<code>WriteRoomData</code>, <code>SpriteFile</code>) und schreibt kein eigenes Dateiformat. Die Räume werden vom Editor 3.6.1.35 kompiliert und laufen auch in ScummVM. Entstanden für <a href="https://freehab.fab0.cc">freehab</a>.</p>
+<h2>Beispiel</h2>
+<pre>{
+  "background": "art/pal/rampe_nacht.png",
+  "walkable": "art/rooms/rampe_nacht.walk.png",
+  "hotspots": {
+    "png": "art/rooms/rampe_nacht.hot.png",
+    "list": [{ "index": 1, "name": "Pilatus", "script": "hPilatus",
+               "walkTo": [150, 175], "events": ["AnyClick"] }]
+  },
+  "roomEvents": ["FirstLoad", "Load"]
+}</pre>
+<p>Quellcode: <a href="https://github.com/drvougel/agstool">github.com/drvougel/agstool</a><br>
+Lizenz: <a href="https://opensource.org/license/artistic-2-0">Artistic License 2.0</a> (wie AGS)</p>
+<p><a href="/">← alle Projekte</a></p>
+</body></html>
